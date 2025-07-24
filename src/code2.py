@@ -1,6 +1,5 @@
 import requests
-from datetime import datetime
-import os
+from bs4 import BeautifulSoup
 
 # Product URL
 url = "https://www.mercadolivre.com.br/console-nintendo-switch-2-preto/p/MLB49200061#polycard_client=search-nordic&searchVariation=MLB49200061&wid=MLB4113271209&position=6&search_layout=grid&type=product&tracking_id=32a3dc63-51b6-4051-88eb-45a4b465073a&sid=search"
@@ -11,19 +10,16 @@ headers = {
 }
 
 # Make the request
-resposta = requests.get(url, headers=headers)
+response = requests.get(url, headers=headers)
 
-# Generate the timestamp for the file name
-timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+# Parse the HTML with BeautifulSoup
+soup = BeautifulSoup(response.text, "html.parser")
 
-# Ensure the "htmls" folder exists
-os.makedirs("htmls", exist_ok=True)
+# Use the selector copied from the browser
+price = soup.select_one("span.andes-money-amount__fraction")
 
-# Define the file name based on the timestamp
-filename = f"htmls/nintendo_switch_{timestamp}.html"
-
-# Save the HTML response
-with open(filename, "w", encoding="utf-8") as f:
-    f.write(resposta.text)
-
-print(f"HTML saved to: {filename}")
+# Check if the price was found
+if price:
+    print("Price captured:", price.text)
+else:
+    print("Price not found")
