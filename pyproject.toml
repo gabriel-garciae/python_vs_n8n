@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "python-vs-n8n"
+version = "0.1.0"
+description = "Projeto comparando Python vs n8n"
+authors = ["Gabriel Garcia Evangelista"]
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "^3.8.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0.0"
+black = "^23.0.0"
+flake8 = "^6.0.0"
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
