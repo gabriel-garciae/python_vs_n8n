@@ -61,38 +61,38 @@ This project demonstrates how to perform **web scraping** on Mercado Livre to mo
 ### Prerequisites
 
 - **Python 3.8+** installed on your system.
-- (Recommended) Create and activate a virtual environment:
+- **Poetry** installed on your system. If not installed, follow the [official installation guide](https://python-poetry.org/docs/#installation).
+- Install the project dependencies:
   ```bash
-  python -m venv venv
-  source venv/bin/activate  # On Windows use: venv\Scripts\activate
+  poetry install
   ```
-- Install the required libraries:
+- Activate the virtual environment:
   ```bash
-  pip install requests beautifulsoup4 pandas
+  poetry shell
   ```
 
 ### Running the Scripts
 
 - **Save the HTML of the product page:**
   ```bash
-  python src/code.py
+  poetry run python src/code.py
   ```
   The HTML file will be saved in the `src/htmls/` folder.
 
 - **Extract and print the product price:**
   ```bash
-  python src/code2.py
+  poetry run python src/code2.py
   ```
 
 - **Extract the price and save it to a CSV file:**
   ```bash
-  python src/code3.py
+  poetry run python src/code3.py
   ```
   The data will be appended to `src/price_history.csv`.
 
 - **Continuous price monitoring and CSV logging:**
   ```bash
-  python src/code4.py
+  poetry run python src/code4.py
   ```
   The script will run indefinitely, saving new price entries every minute.
 
